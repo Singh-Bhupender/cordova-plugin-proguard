@@ -17,9 +17,9 @@
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
-#-keepclassmembers class android.webkit.WebView {
-#   public *;
-#}
+-keepclassmembers class android.webkit.WebView {
+   public *;
+}
 
 #-injars      bin/classes
 #-injars      libs
@@ -46,11 +46,20 @@
     <fields>;
 }
 
+-keep public class * extends plugin.google.maps.MyPlugin
+-keepclassmembers public class plugin.google.maps.GoogleMaps {*; }
+-keepclassmembers public class * extends plugin.google.maps.MyPlugin { *; }
+
 # These options let obfuscated applications or libraries produce stack traces that can still be deciphered later on 
 -renamesourcefileattribute SourceFile    
 -keepattributes SourceFile,LineNumberTable
 
+# Progaurd for kpmg live app (com.benepik.kpmg.wired.sso)
+-keep class com.benepik.kpmg.wired.sso.BuildConfig { *; }
+
 # Enable proguard with Cordova
+-keep class org.apache.cordova.** { *; }
+-keep class org.apache.cordova.camera.** { *; }
 -keep class org.apache.cordova.** { *; }
 -keep public class * extends org.apache.cordova.CordovaPlugin
 
